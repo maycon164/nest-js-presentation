@@ -14,7 +14,8 @@ export class UsersService {
       id: this.repo.length,
       name: createUserDto.name,
       email: createUserDto.email,
-      isAdmin: false
+      isAdmin: false,
+      password: '12345'
     }
 
     if (createUserDto.email.includes('@e-core.com')) dataToSave["isAdmin"] = true
@@ -30,5 +31,9 @@ export class UsersService {
 
     return this.repo;
 
+  }
+
+  findByEmail(email: string) {
+    return this.repo.find(user => user.email === email)
   }
 }
