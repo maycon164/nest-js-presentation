@@ -22,8 +22,8 @@ export class AuthController {
     async signUp(@Body() register: RegisterDto) {
 
         const data = await this.authService.signUp(register);
+
         if (data) return "User Inserted"
-        return "Cannot Insert User"
     }
 
 }

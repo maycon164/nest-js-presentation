@@ -10,11 +10,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model user {
-  id Int @id @default(autoincrement())
-  name String
-  email String
+  id       Int     @id @default(autoincrement())
+  name     String
+  email    String
   password String
-  admin Boolean
+  admin    Boolean
+}
+model movie {
+  id        Int     @id @default(autoincrement())
+  name      String
+  price     Float
+  available Boolean
 }
