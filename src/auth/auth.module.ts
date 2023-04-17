@@ -10,7 +10,7 @@ import { AuthService } from "./auth.service";
         UsersModule,
         JwtModule.register({
             global: true,
-            secret: 'cafezin',
+            secret: process.env.SECRET,
             signOptions: { expiresIn: '1w' }
         })
     ],

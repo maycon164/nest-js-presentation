@@ -1,39 +1,50 @@
-import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from './entities/user.entity';
-import usersMock from './mockuser';
+import { Injectable } from "@nestjs/common";
+import { PrismaService } from "src/prisma/prisma.service";
+import { CreateUserDto } from "./dto/create-user.dto";
+
 @Injectable()
 export class UsersService {
 
-  private repo: User[] = usersMock;
+    constructor(private prisma: PrismaService) { }
 
-  create(createUserDto: CreateUserDto) {
+    async findByEmail(email: string) {
+        const user = await this.prisma.user.findFirst({
+            where: {
+                email
+            }
+        })
 
-    const dataToSave = {
-      id: this.repo.length,
-      name: createUserDto.name,
-      email: createUserDto.email,
-      isAdmin: false,
-      password: '12345'
+        return user;
     }
 
-    if (createUserDto.email.includes('@e-core.com')) dataToSave["isAdmin"] = true
 
-    this.repo.push(dataToSave);
+    async create(userDto: CreateUserDto) {
 
-    return 'User Saved Successfully'
-  }
+        const data = {
+            ...userDto,
+            admin: userDto.isAdmin
+        }
 
-  findAll(query?: string) {
+        delete data.isAdmin
 
-    if (query) return this.repo.filter(user => user.name.includes(query) || user.email.includes(query))
+        const user = await this.prisma.user.create({
+            data
+        })
 
-    return this.repo;
+        delete user.password
 
-  }
+        return user
+    }
 
-  findByEmail(email: string) {
-    return this.repo.find(user => user.email === email)
-  }
+    async findAll(search?) {
+
+        const users = await this.prisma.user.findMany({
+            where: {
+                name: search
+            }
+        });
+
+        return users;
+    }
+
 }
