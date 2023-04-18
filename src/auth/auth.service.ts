@@ -30,12 +30,7 @@ export class AuthService {
     }
 
     async signUp(register: RegisterDto) {
-        // todo need to encrypt this
-
         const insertedUser = this.usersService.create({ ...register, isAdmin: false })
-
-        if (insertedUser) return true
-
-        return false
+        return insertedUser ? true : false;
     }
 }

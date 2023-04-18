@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { MoviesService } from './movies.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
-import { IS_PUBLIC_ROUTE, PUBLIC_ROUTE } from 'src/common/authDecorators.decorator';
+import { IS_PUBLIC_ROUTE, PUBLIC_ROUTE } from 'src/common/decorators/authDecorators.decorator';
 
 @Controller('movies')
 export class MoviesController {
