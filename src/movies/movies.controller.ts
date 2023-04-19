@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
-import { IS_PUBLIC_ROUTE, PUBLIC_ROUTE } from 'src/common/decorators/authDecorators.decorator';
+import { PUBLIC_ROUTE } from 'src/common/decorators/authDecorators.decorator';
 
 @Controller('movies')
 export class MoviesController {
@@ -25,7 +25,7 @@ export class MoviesController {
     return this.moviesService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateMovieDto: UpdateMovieDto) {
     return this.moviesService.update(+id, updateMovieDto);
   }

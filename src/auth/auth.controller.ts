@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from "@nestjs/common";
+import { Controller, Post, Body, InternalServerErrorException } from "@nestjs/common";
 import { PUBLIC_ROUTE } from "src/common/decorators/authDecorators.decorator";
 import { AuthService } from "./auth.service";
 import { MakeLoginDto } from "./dto/makeLogin.dto";
@@ -22,8 +22,9 @@ export class AuthController {
     async signUp(@Body() register: RegisterDto) {
 
         const data = await this.authService.signUp(register);
-
         if (data) return "User Inserted"
+
+        throw new InternalServerErrorException('Could not Insert User')
     }
 
 }
