@@ -1,14 +1,13 @@
-import { IsString, IsBoolean, IsNumber } from 'class-validator'
+import { IsString } from 'class-validator'
 
 export class CreateMovieDto {
 
     @IsString()
     name: string
 
-    @IsNumber()
-    price: number
+    @IsString()
+    year: string
 
-    @IsBoolean()
-    available: boolean
-
+    @IsString()
+    category: string
 }
