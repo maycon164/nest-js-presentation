@@ -15,7 +15,6 @@ model user {
   name     String
   email    String
   password String
-  admin    Boolean
 }
 model movie {
   id        Int     @id @default(autoincrement())
