@@ -1,5 +1,5 @@
 import { Controller, Post, Body, InternalServerErrorException } from "@nestjs/common";
-import { PUBLIC_ROUTE } from "src/common/decorators/authDecorators.decorator";
+import { PUBLIC_ROUTE } from "src/common/decorators/public-route.decorator";
 import { AuthService } from "./auth.service";
 import { MakeLoginDto } from "./dto/makeLogin.dto";
 import { RegisterDto } from "./dto/register.dto";
