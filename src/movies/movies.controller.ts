@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, Query } from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
@@ -15,8 +15,8 @@ export class MoviesController {
 
   @PUBLIC_ROUTE()
   @Get()
-  findAll() {
-    return this.moviesService.findAll();
+  findAll(@Query('search') search: string) {
+    return this.moviesService.findAll(search);
   }
 
   @Get(':id')

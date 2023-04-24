@@ -19,6 +19,6 @@ model user {
 model movie {
   id        Int     @id @default(autoincrement())
   name      String
-  price     Float
-  available Boolean
+  category String
+  year String
 }

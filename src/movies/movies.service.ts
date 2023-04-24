@@ -16,8 +16,16 @@ export class MoviesService {
     return movie;
   }
 
-  async findAll() {
-    const movies = await this.prisma.movie.findMany({});
+  async findAll(search?: string) {
+
+    const movies = await this.prisma.movie.findMany({
+      where: {
+        name: {
+          contains: search
+        }
+      }
+    });
+
     return movies;
   }
 
